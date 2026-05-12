@@ -131,7 +131,7 @@
       <button onclick="showScreen('.')">.</button>
 
       <button class="zero" onclick="showScreen('0')">0</button>
-      <button class="equal">=</button>
+      <button class="equal" onclick="results()">=</button>
 
     </div>
 
@@ -150,7 +150,7 @@
   function setOperatore(Op){
     if (num1 === '') {
       return
-    } 
+    }
     const  ops = ['+','-', '/' , '*']
     let isNewOp = ops.includes(Op)
     let screenOp = ops.some(el => display.value.includes(el))
@@ -161,8 +161,29 @@
     display.value += '' +Op+ ''
   }
   function results(){
+    let result = ''
+    let firstNum = parseFloat(num1)
+    let secounNum = parseFloat(num2)
+    if (operator === '+') {
+      result = firstNum + secounNum
+    } else if (operator === '-') {
+     result = firstNum - secounNum
+      } else if (operator === '*') {
+     result = firstNum * secounNum
+      } else if (operator === '/') {
+        if(secounNum === '0'){
+          result = 'لا يمكن القسمة على صفر'
+        }else{
+          result = firstNum / secounNum
+        }
+      } 
+      num1 = result
+      num2 = ''
+      display.value = result
+    //const ops = ['+','-', '/' , '*']
     
   }
+  
 </script>
 </body>
 </html>
